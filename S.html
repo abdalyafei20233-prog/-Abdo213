@@ -40,53 +40,44 @@
         .widget { background: var(--glass-bg); backdrop-filter: blur(30px); border: 1px solid var(--border-color); border-radius: 20px; padding: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); margin-bottom: 15px; }
         .widget-title { font-size: 1rem; font-weight: 900; margin-bottom: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 5px; }
 
-        /* المحتوى الرئيسي */
+        /* الوسط */
         .main-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 20px; position: relative; transition: 0.5s; }
+        .top-site-name { background: var(--glass-bg); padding: 12px 35px; border-radius: 50px; font-weight: 900; border: 1px solid var(--border-color); margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 
-        /* اسم الموقع بمستطيل دائري */
-        .top-site-name {
-            background: var(--glass-bg);
-            padding: 12px 35px;
-            border-radius: 50px; /* جعل المستطيل دائري الأطراف بالكامل */
-            font-weight: 900;
-            border: 1px solid var(--border-color);
-            margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        /* زر التحكم الموحد */
+        /* التحكم */
         .center-controls { margin-top: 15px; position: relative; }
-        .main-btn {
-            background: var(--glass-bg); border: 1px solid var(--border-color); color: inherit;
-            padding: 8px 25px; border-radius: 50px; cursor: pointer; font-weight: 900; font-size: 1.1rem;
-        }
+        .main-btn { background: var(--glass-bg); border: 1px solid var(--border-color); color: inherit; padding: 8px 25px; border-radius: 50px; cursor: pointer; font-weight: 900; font-size: 1.1rem; }
 
-        /* قائمة الخيارات */
+        /* القائمة */
         .dropdown-menu {
             display: none; position: absolute; top: 110%; left: 50%; transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.95); color: #333; min-width: 220px;
-            border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); z-index: 1000; padding: 10px;
+            background: rgba(255, 255, 255, 0.98); color: #333; min-width: 260px;
+            border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); z-index: 1000; padding: 10px;
         }
         .dropdown-menu.show { display: block; }
-        .menu-section { border-bottom: 1px solid #eee; padding: 8px 0; }
-        .menu-item { display: block; padding: 8px 10px; text-decoration: none; color: #333; font-size: 0.9rem; border-radius: 8px; cursor: pointer; }
-        .menu-item:hover { background: #f0f0f0; }
+        .menu-section { border-bottom: 1px solid #eee; padding: 10px 0; }
+        .menu-section:last-child { border-bottom: none; }
+        .menu-item { display: flex; align-items: center; justify-content: center; padding: 10px; text-decoration: none; color: #333; font-size: 0.95rem; border-radius: 12px; cursor: pointer; transition: 0.2s; flex: 1; }
+        .menu-item:hover { background: #f5f5f5; }
 
-        /* الساعة */
+        .logo-circle {
+            width: 28px; height: 28px; background: #333; color: #fff;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem; font-weight: 900; margin-right: 10px;
+        }
+
+        /* الساعة والبحث */
         .clock-container { margin: auto; background: var(--glass-bg); backdrop-filter: blur(40px); padding: 50px 80px; border-radius: 40px; border: 1px solid var(--border-color); text-align: center; cursor: pointer; transition: 0.5s; }
         #time { font-size: clamp(60px, 15vw, 150px); font-weight: 900; }
-
-        /* وضع ملء الشاشة */
-        body.fullscreen-mode .side-panel, body.fullscreen-mode .top-site-name, body.fullscreen-mode .center-controls, body.fullscreen-mode .search-section { display: none; }
-        body.fullscreen-mode .clock-container { transform: scale(1.4); background: transparent; border: none; box-shadow: none; backdrop-filter: none; }
-
-        /* البحث */
         .search-section { width: 80%; max-width: 450px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
         .search-bar { background: var(--glass-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 5px 15px; display: flex; align-items: center; }
         .search-bar input { background: transparent; border: none; color: white; padding: 10px; flex: 1; outline: none; font-family: inherit; font-weight: 900; }
 
         .cal-day { font-size: 2.8rem; font-weight: 900; display: block; line-height: 1; margin: 5px 0; }
         .cal-sub { font-size: 0.9rem; opacity: 0.8; display: block; }
+
+        body.fullscreen-mode .side-panel, body.fullscreen-mode .top-site-name, body.fullscreen-mode .center-controls, body.fullscreen-mode .search-section { display: none; }
+        body.fullscreen-mode .clock-container { transform: scale(1.4); background: transparent; border: none; }
     </style>
 </head>
 <body>
@@ -94,7 +85,7 @@
     <div class="side-panel">
         <div class="widget">
             <div class="widget-title">🕌 الصلاة</div>
-            <div id="prayerList" style="font-size: 0.9rem;">
+            <div id="prayerList" style="font-size: 0.85rem;">
                 <div style="display:flex; justify-content:space-between; padding:4px 0;"><span>الفجر</span><span>٠٥:١٢ ص</span></div>
                 <div style="display:flex; justify-content:space-between; padding:4px 0;"><span>الظهر</span><span>١٢:٢٠ م</span></div>
                 <div style="display:flex; justify-content:space-between; padding:4px 0;"><span>العصر</span><span>٠٣:٤٥ م</span></div>
@@ -102,30 +93,36 @@
                 <div style="display:flex; justify-content:space-between; padding:4px 0;"><span>العشاء</span><span>٠٧:٤٥ م</span></div>
             </div>
         </div>
-        <div class="widget"><div class="widget-title">⏱️ ساعة إيقاف</div><div style="text-align:center; font-size: 1.5rem;">٠٠:٠٠</div></div>
+        <div class="widget"><div class="widget-title">⏱️ ساعة إيقاف</div><div id="swDisplay" style="text-align:center; font-size: 1.5rem;">٠٠:٠٠</div></div>
     </div>
 
     <div class="main-wrapper">
-        <div class="top-site-name">ساعة abdo213</div>
+        <div class="top-site-name" id="displaySiteName">ساعة abdo213</div>
 
         <div class="center-controls">
             <button class="main-btn" onclick="toggleDropdown()">...</button>
             <div class="dropdown-menu" id="mainMenu">
                 <div class="menu-section">
-                    <div class="menu-item" onclick="setTheme('light')">☀️ فاتح</div>
-                    <div class="menu-item" onclick="setTheme('dark')">🌙 داكن</div>
-                    <div class="menu-item" onclick="setTheme('desert')">⏳ صحراوي</div>
-                    <div class="menu-item" onclick="setTheme('color')">🎨 ملون</div>
-                    <div class="menu-item" onclick="setTheme('nature')">🌿 طبيعي</div>
-                </div>
-                <div class="menu-section">
-                    <div style="display: flex; gap: 5px;">
-                        <div class="menu-item" onclick="setLang('ar')" style="flex:1; text-align:center;">AR</div>
-                        <div class="menu-item" onclick="setLang('en')" style="flex:1; text-align:center;">EN</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                        <div class="menu-item" onclick="setTheme('light')">☀️ فاتح</div>
+                        <div class="menu-item" onclick="setTheme('dark')">🌙 داكن</div>
+                        <div class="menu-item" onclick="setTheme('desert')">⏳ صحراوي</div>
+                        <div class="menu-item" onclick="setTheme('color')">🎨 ملون</div>
+                        <div class="menu-item" onclick="setTheme('nature')" style="grid-column: span 2;">🌿 طبيعي</div>
                     </div>
                 </div>
                 <div class="menu-section">
-                    <div class="menu-item" style="text-align: center; font-weight: 900;">شعارنا (ح)</div>
+                    <div style="display: flex; gap: 5px;">
+                        <div class="menu-item" onclick="setLang('ar')" style="font-weight:900;">AR</div>
+                        <div class="menu-item" onclick="setLang('en')" style="font-weight:900;">EN</div>
+                        <div class="menu-item" onclick="setLang('it')" style="font-weight:900;">IT</div>
+                    </div>
+                </div>
+                <div class="menu-section">
+                    <div class="menu-item" onclick="alert('abdo213 Clock - Versione 2.0')">
+                        <span id="aboutLabel">حول الموقع</span>
+                        <div class="logo-circle">ح</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,21 +140,46 @@
 
     <div class="side-panel">
         <div class="widget">
-            <div class="widget-title">📅 التقويم المزدوج</div>
+            <div class="widget-title">📅 <span id="calLabel">التقويم المزدوج</span></div>
             <div style="text-align:center;">
                 <span id="hDay" class="cal-day">--</span><span id="hMonth" class="cal-sub">--</span>
                 <div style="border-top:1px solid var(--border-color); margin:10px 0;"></div>
                 <span id="mDay" class="cal-day">--</span><span id="mMonth" class="cal-sub">--</span>
             </div>
         </div>
-        <div class="widget"><div class="widget-title">⏲️ مؤقت</div><div style="text-align:center; font-size: 1.5rem;">٠٥:٠٠</div></div>
+        <div class="widget"><div class="widget-title">⏲️ <span id="timerLabel">مؤقت</span></div><div style="text-align:center; font-size: 1.5rem;">٠٥:٠٠</div></div>
     </div>
 
     <script>
+        let currentLang = 'ar';
         const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
         const hijriMonths = ["محرم", "صفر", "ربيع الأول", "ربيع الثاني", "جمادى الأولى", "جمادى الثانية", "رجب", "شعبان", "رمضان", "شوال", "ذو القعدة", "ذو الحجة"];
 
-        function toDigits(str) { return str.toString().replace(/[0-9]/g, w => arabicDigits[w]); }
+        function toDigits(str) {
+            if (currentLang !== 'ar') return str;
+            return str.toString().replace(/[0-9]/g, w => arabicDigits[w]);
+        }
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+            // تحديث بعض النصوص الأساسية
+            const labels = {
+                ar: { site: 'ساعة abdo213', cal: 'التقويم المزدوج', timer: 'مؤقت', about: 'حول الموقع' },
+                en: { site: 'abdo213 Clock', cal: 'Dual Calendar', timer: 'Timer', about: 'About' },
+                it: { site: 'Orologio abdo213', cal: 'Calendario Doppio', timer: 'Timer', about: 'Informazioni' }
+            };
+
+            document.getElementById('displaySiteName').textContent = labels[lang].site;
+            document.getElementById('calLabel').textContent = labels[lang].cal;
+            document.getElementById('timerLabel').textContent = labels[lang].timer;
+            document.getElementById('aboutLabel').textContent = labels[lang].about;
+
+            updateClock();
+        }
+
         function toggleDropdown() { document.getElementById('mainMenu').classList.toggle('show'); }
         function setTheme(t) { document.body.setAttribute('data-theme', t); }
         function toggleFullScreen() { document.body.classList.toggle('fullscreen-mode'); }
@@ -165,18 +187,25 @@
         function updateClock() {
             const now = new Date();
             let h = now.getHours(), m = String(now.getMinutes()).padStart(2, '0'), s = String(now.getSeconds()).padStart(2, '0');
-            let ampm = h >= 12 ? "م" : "ص";
+
+            let ampmText = "";
+            if (currentLang === 'ar') ampmText = h >= 12 ? "م" : "ص";
+            else if (currentLang === 'it') ampmText = h >= 12 ? "PM" : "AM";
+            else ampmText = h >= 12 ? "PM" : "AM";
+
             h = h % 12 || 12;
             document.getElementById('time').textContent = toDigits(`${String(h).padStart(2, '0')}:${m}:${s}`);
-            document.getElementById('ampm').textContent = ampm;
+            document.getElementById('ampm').textContent = ampmText;
 
+            // ميلادي
             document.getElementById('mDay').textContent = toDigits(now.getDate());
-            document.getElementById('mMonth').textContent = (now.getMonth()+1) + " / " + now.getFullYear() + " م";
+            document.getElementById('mMonth').textContent = (now.getMonth()+1) + " / " + now.getFullYear() + (currentLang === 'ar' ? " م" : "");
 
+            // هجري
             const hDate = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-uma', {day:'numeric', month:'numeric', year:'numeric'}).format(now);
             const hParts = hDate.split('/');
             document.getElementById('hDay').textContent = toDigits(hParts[0]);
-            document.getElementById('hMonth').textContent = hijriMonths[parseInt(hParts[1])-1] + " " + toDigits(hParts[2]) + " هـ";
+            document.getElementById('hMonth').textContent = hijriMonths[parseInt(hParts[1])-1] + " " + toDigits(hParts[2]) + (currentLang === 'ar' ? " هـ" : "");
         }
 
         setInterval(updateClock, 1000);
@@ -185,5 +214,4 @@
         window.onclick = function(event) { if (!event.target.matches('.main-btn')) { var dropdowns = document.getElementsByClassName("dropdown-menu"); for (var i = 0; i < dropdowns.length; i++) { if (dropdowns[i].classList.contains('show')) dropdowns[i].classList.remove('show'); } } }
     </script>
 </body>
-
 </html>
